@@ -67,7 +67,7 @@ class Application extends Component {
         return (
             <div>
                 <h1> Calculator</h1>
-                <h2>`{number1}{sign}{number2}</h2>
+                <h2>{number1}{sign}{number2}</h2>
                 <HighScore 
                     overTen={this.state.overTen}
                     onReset={this.resetCout}
