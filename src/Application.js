@@ -14,7 +14,7 @@ class Application extends Component {
     }
 
     reset = () => {
-        this.setState({result: '0'});
+        this.setState({current: '0'});
     }
 
     addToCurrent = (symbol) => {
@@ -43,11 +43,18 @@ class Application extends Component {
         ];
 
         return (
-            <div>
-                <input className="result" type="text" value={this.state.current} />
+            <div className="Aplication">
+                {this.state.previous.length > 0 ? 
+                <div className="floaty-last">{this.state.previous[this.state.previous.length-1]}</div> 
+                :null }
+                
+                
+                <div>
+                    <input className="result" type="text" value={this.state.current} />
+                </div>
 
                 {buttons.map((btn, i) => {
-                    return <Button symbol={btn.symbol} cols={btn.cols} action={(symbol) => btn.action} />
+                    return <Button key={i} symbol={btn.symbol} cols={btn.cols} action={(symbol) => btn.action(symbol)} />
                 })}
             
             </div>
