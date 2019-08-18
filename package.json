@@ -8,7 +8,7 @@
     "react-router": "^5.0.1",
     "react-scripts": "3.1.1"
   },
-  "homepage": "http://kamilabartnik.github.io/react",
+  "homepage": "https://kamilabartnik.github.io/react/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
