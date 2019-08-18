@@ -1,8 +1,19 @@
 body button {
-    border-radius: 15px;
-    padding: 10px;
+    border-radius: 20px;
+    padding: 20px;
     border: none;
     letter-spacing: 1px;
     text-transform: uppercase;
     color: #666;
+    text-align: center;
+    font-size: 30px;
+}
+
+body div, h1, h2, h3 {
+    padding-left: 30px;
+    align-content: center;
+}
+
+h2 {
+    border: 1px;
 }
