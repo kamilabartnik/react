@@ -10,15 +10,34 @@ class Application extends Component {
         this.state={
             current: '0',
             previous: [],
+            nextIsReset: false,
         }
     }
 
     reset = () => {
-        this.setState({current: '0'});
+        this.setState({current: '0', previous: [], nextIsReset: false});
     }
 
     addToCurrent = (symbol) => {
-        this.setState({current: this.state.current + symbol});
+        if(["/", "-", "+", "*"].indexOf(symbol) > -1){
+            let {previous} = this.state;
+            previous.push(this.state.current + symbol);
+            this.setState({previous, nextIsReset: true});
+        } else {
+            if((this.state.current === "0" && symbol !== ".") || this.state.nextIsReset){
+                this.setState({current: symbol, nextIsReset: false});
+            } else {
+                this.setState({current: this.state.current + symbol});
+            }
+        }
+    }
+
+    calculate = (symbol) => {
+        let {current, previous, nextIsReset} = this.state;
+        if(previous.length >0 ){
+            current = eval(String(previous[previous.length-1] + current));
+            this.setState({current, previous: [], nextIsReset: true})
+        } 
     }
 
     render(){
@@ -28,7 +47,7 @@ class Application extends Component {
             {symbol: '7', cols: 1, action: this.addToCurrent},
             {symbol: '8', cols: 1, action: this.addToCurrent},
             {symbol: '9', cols: 1, action: this.addToCurrent},
-            {symbol: 'X', cols: 1, action: this.addToCurrent},
+            {symbol: '*', cols: 1, action: this.addToCurrent},
             {symbol: '4', cols: 1, action: this.addToCurrent},
             {symbol: '5', cols: 1, action: this.addToCurrent},
             {symbol: '6', cols: 1, action: this.addToCurrent},
@@ -39,7 +58,7 @@ class Application extends Component {
             {symbol: '+', cols: 1, action: this.addToCurrent},
             {symbol: '0', cols: 2, action: this.addToCurrent},
             {symbol: '.', cols: 1, action: this.addToCurrent},
-            {symbol: '=', cols: 1, action: this.addToCurrent},
+            {symbol: '=', cols: 1, action: this.calculate},
         ];
 
         return (
