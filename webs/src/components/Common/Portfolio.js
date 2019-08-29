@@ -1,6 +1,24 @@
 import React, { Component } from 'react';
+import PortfolioItem from './PortfolioItem';
 
-class Portfolio extends Comment {
+import img1 from '../assets/img/portfolio/01-thumbnail.jpg'
+import img2 from '../assets/img/portfolio/02-thumbnail.jpg'
+import img3 from '../assets/img/portfolio/03-thumbnail.jpg'
+import img4 from '../assets/img/portfolio/04-thumbnail.jpg'
+import img5 from '../assets/img/portfolio/05-thumbnail.jpg'
+import img6 from '../assets/img/portfolio/06-thumbnail.jpg'
+
+
+const portfolio = [
+    {title: 'Threads', subtitle: 'Illustration', image: img1},
+    {title: 'Explore', subtitle: 'Graphic Design', image: img2},
+    {title: 'Finish', subtitle: 'Identity', image: img3},
+    {title: 'Lines', subtitle: 'Illustration', image: img4},
+    {title: 'Southwest', subtitle: 'Illustration', image: img5},
+    {title: 'Photography', subtitle: 'Illustration', image: img6},
+]
+
+class Portfolio extends Component {
 
     render() {
         return (
@@ -14,7 +32,10 @@ class Portfolio extends Comment {
                             </div>
                         </div>
                         <div className="row">
-                   
+                        {portfolio.map((item, index) => {
+                                return <PortfolioItem {...item} key={index} />
+                            })}
+
                         </div>
                     </div>
                 </section>

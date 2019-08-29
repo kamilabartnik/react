@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../Common/Header';
-import image from '../assets/img/header-bg.jpg'
+import image from '../assets/img/kotek.jpg'
 
 //Re-usable components
 import Services from '../Common/Services';
@@ -21,6 +21,7 @@ class Home extends Component {
           image={image}
         />
         <Services />
+        <Portfolio />
 
       </div>
     )
