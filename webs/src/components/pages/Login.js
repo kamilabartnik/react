@@ -50,6 +50,8 @@ class Login extends Component {
   }
 }
 
+const mapStateToProps
+
 export default withFormik({
   mapPropsToValues: () => ({
     email: '',
