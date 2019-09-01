@@ -31,10 +31,15 @@
       "model": "Profile",
       "foreignKey": "profileId"
     },
-    "category": {
+    "Category": {
       "type": "belongsTo",
-      "model": "category",
+      "model": "Category",
       "foreignKey": "categoryId"
+    },
+    "PostImage": {
+      "type": "hasMany",
+      "model": "PostImage",
+      "foreignKey": ""
     }
   },
   "acls": [
