@@ -13,6 +13,13 @@
       "./mixins"
     ]
   },
+  "User": {
+    "dataSource": "db"
+  },
+  "AccessToken": {
+    "dataSource": "db",
+    "public": false
+  },
   "ACL": {
     "dataSource": "db",
     "public": false
@@ -27,25 +34,5 @@
   "Role": {
     "dataSource": "db",
     "public": false
-  },
-  "Profile": {
-    "dataSource": "db",
-    "public": true
-  },
-  "user": {
-    "dataSource": "db",
-    "public": true
-  },
-  "CustomAccessToken": {
-    "dataSource": "db",
-    "public": true
-  },
-  "Post": {
-    "dataSource": "db",
-    "public": true
-  },
-  "category": {
-    "dataSource": "db",
-    "public": true
   }
 }
