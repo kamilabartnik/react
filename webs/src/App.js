@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import PageWrapper from './components/PageWrapper';
 import AdminWrapper from './components/AdminWrapper';
-
+import { connect } from 'react-redux';
 // eslint-disable-next-line
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
 
 //Pages
 import Home from './components/pages/Home';
 import About from './components/pages/About';
 import Login from './components/pages/Login';
-import Contact from './components/pages/Contact'
+import Contact from './components/pages/Contact';
+import Dashboard from './components/pages/Dashboard';
 
 class App extends Component {
 
@@ -17,42 +19,49 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
-          
+
           <Route
             path="/admin"
-            render= {props => (
-              <AdminWrapper>
-                <Login {...props} />
-              </AdminWrapper>
-            )}
+            render={props => {
+              console.log("Props", props);
+              return (
+                <AdminWrapper>
+                  {this.props.auth.token ?
+                    <Dashboard />
+                    :
+                    <Login {...props} />
+                  }
+                </AdminWrapper>
+              )
+            }}
           />
 
 
-            <Route
-              exact={true}
-              path="/"
-              render= {props => (
-                <PageWrapper>
-                  <Home {...props} />
-                </PageWrapper>
-              )}
-            />
-            <Route
-              path="/about"
-              render= {props => (
-                <PageWrapper>
-                  <About {...props} />
-                </PageWrapper>
-              )}
-            />
-            <Route
-              path="/contact"
-              render= {props => (
-                <PageWrapper>
-                  <Contact {...props} />
-                </PageWrapper>
-              )}
-            />
+          <Route
+            exact={true}
+            path="/"
+            render={props => (
+              <PageWrapper>
+                <Home {...props} />
+              </PageWrapper>
+            )}
+          />
+          <Route
+            path="/about"
+            render={props => (
+              <PageWrapper>
+                <About {...props} />
+              </PageWrapper>
+            )}
+          />
+          <Route
+            path="/contact"
+            render={props => (
+              <PageWrapper>
+                <Contact {...props} />
+              </PageWrapper>
+            )}
+          />
 
         </Router>
       </div>
@@ -60,4 +69,19 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+
+  }
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
