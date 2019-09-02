@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import PageWrapper from './components/PageWrapper';
-import AdminWrapper from './components/AdminWrapper';
 import { connect } from 'react-redux';
 // eslint-disable-next-line
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
+//Wrappers
+import PageWrapper from './components/PageWrapper';
+import AdminWrapper from './components/AdminWrapper';
+import LoginWrapper from './components/LoginWrapper';
 
 //Pages
 import Home from './components/pages/Home';
@@ -25,13 +27,19 @@ class App extends Component {
             render={props => {
               console.log("Props", props);
               return (
-                <AdminWrapper>
-                  {this.props.auth.token ?
-                    <Dashboard />
+                <div>
+                {
+                  this.props.auth.token ?
+                    <AdminWrapper>
+                      <Dashboard />
+                    </AdminWrapper>
                     :
-                    <Login {...props} />
-                  }
-                </AdminWrapper>
+                    <LoginWrapper>
+                      <Login {...props} />
+                    </LoginWrapper>
+                    
+                }
+                </div>
               )
             }}
           />
