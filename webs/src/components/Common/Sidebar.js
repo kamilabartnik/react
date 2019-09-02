@@ -20,6 +20,7 @@ class Sidebar extends Component {
   render() {
     return (
       <List>
+        {/* 
         <ListItemLink to="/admin">
             <ListItemIcon>
               <DashboardIcon />
@@ -38,6 +39,7 @@ class Sidebar extends Component {
             </ListItemIcon>
             <ListItemText primary="Users" />
         </ListItemLink>
+         */}
       </List>
     )
   }
