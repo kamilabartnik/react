@@ -13,7 +13,11 @@ import Home from './components/pages/Home';
 import About from './components/pages/About';
 import Login from './components/pages/Login';
 import Contact from './components/pages/Contact';
-import Dashboard from './components/pages/Dashboard';
+
+// admin pages
+import Dashboard from './components/pages/Admin/Dashboard';
+import Users from './components/pages/Admin/Users';
+import Post from './components/pages/Admin/Post';
 
 class App extends Component {
 
@@ -23,6 +27,51 @@ class App extends Component {
         <Router>
 
           <Route
+            path='/admin/users'
+            render={props => {
+              console.log("Props", props);
+              return (
+                <div>
+                  {
+                    this.props.auth.token ?
+                      <AdminWrapper>
+                        <Users />
+                      </AdminWrapper>
+                      :
+                      <LoginWrapper>
+                        <Login {...props} />
+                      </LoginWrapper>
+
+                  }
+                </div>
+              )
+            }}
+          />
+
+          <Route
+            path = '/admin/post'
+            render={props => {
+              console.log("Props", props);
+              return (
+                <div>
+                {
+                  this.props.auth.token ?
+                    <AdminWrapper>
+                      <Post />
+                    </AdminWrapper>
+                    :
+                    <LoginWrapper>
+                      <Login {...props} />
+                    </LoginWrapper>
+                    
+                }
+                </div>
+              )
+            }}
+          />
+
+          <Route
+          exact = {true}
             path="/admin"
             render={props => {
               console.log("Props", props);
