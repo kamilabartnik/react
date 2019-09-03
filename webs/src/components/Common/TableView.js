@@ -19,8 +19,8 @@ class TableView extends Component {
               {columns ?
                 columns.map((col, i) => {
                   return (
-                    <TableCell {...col} key={i} >
-                      
+                    <TableCell key={i}>
+                      {col.label}
                     </TableCell>
                   )
                 })
@@ -30,15 +30,17 @@ class TableView extends Component {
           <TableBody>
             {rows ?
               rows.map((row, i) => {
-                return (columns.map((col1, colIndex) => {
+                return columns.map((col, colIndex) => {
                   return (
-                    <TableCell key={colIndex}>
-                      {row[col1.name]}
+                    <TableCell>
+                      {row[col.name]}
                     </TableCell>
                   )
-                }))
-              })
+                })
+                }
+                )
             :null}
+            
           </TableBody>
         </Table>
       </Paper>
