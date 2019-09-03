@@ -18,6 +18,7 @@ import Contact from './components/pages/Contact';
 import Dashboard from './components/pages/Admin/Dashboard';
 import Users from './components/pages/Admin/Users';
 import Post from './components/pages/Admin/Post';
+import AddPost from './components/pages/Admin/AddPost';
 
 class App extends Component {
 
@@ -47,38 +48,59 @@ class App extends Component {
               )
             }}
           />
-
+          
           <Route
-            path = '/admin/post'
+            path="/admin/post/add"
             render={props => {
               console.log("Props", props);
               return (
                 <div>
-                {
-                  this.props.auth.token ?
-                    <AdminWrapper>
-                      <Post />
-                    </AdminWrapper>
-                    :
-                    <LoginWrapper>
-                      <Login {...props} />
-                    </LoginWrapper>
-                    
-                }
+                  {
+                    this.props.auth.token ?
+                      <AdminWrapper>
+                        <AddPost />
+                      </AdminWrapper>
+                      :
+                      <LoginWrapper>
+                        <Login {...props} />
+                      </LoginWrapper>
+
+                  }
                 </div>
               )
             }}
           />
 
           <Route
-          exact = {true}
+            path='/admin/post'
+            render={props => {
+              console.log("Props", props);
+              return (
+                <div>
+                  {
+                    this.props.auth.token ?
+                      <AdminWrapper>
+                        <Post />
+                      </AdminWrapper>
+                      :
+                      <LoginWrapper>
+                        <Login {...props} />
+                      </LoginWrapper>
+
+                  }
+                </div>
+              )
+            }}
+          />
+
+          <Route
+            exact={true}
             path="/admin"
             render={props => {
               console.log("Props", props);
               return (
                 <div>
-                {
-                  this.props.auth.token ?
+                  {this.props.auth.token ?
                     <AdminWrapper>
                       <Dashboard />
                     </AdminWrapper>
@@ -86,13 +108,11 @@ class App extends Component {
                     <LoginWrapper>
                       <Login {...props} />
                     </LoginWrapper>
-                    
-                }
+                  }
                 </div>
               )
             }}
           />
-
 
           <Route
             exact={true}
