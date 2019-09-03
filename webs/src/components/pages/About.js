@@ -7,8 +7,8 @@ class About extends Component {
   render() {
     return (
       <div>
-        <Header 
-          title ="About us"
+        <Header
+          title="About us"
           subtitle="Welcome! Welcome!"
           showButton={false}
           image={image}
@@ -78,15 +78,15 @@ class About extends Component {
                       <div className="timeline-body">
                         <p className="text-muted">
                           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!
-                                    </p>
+                        </p>
                       </div>
                     </div>
                   </li>
                   <li className="timeline-inverted">
                     <div className="timeline-image">
                       <h4>Be Part
-                                <br />Of Our
-                                <br />Story!</h4>
+                        <br />Of Our
+                        <br />Story!</h4>
                     </div>
                   </li>
                 </ul>
@@ -95,11 +95,8 @@ class About extends Component {
           </div>
         </section>
       </div>
-
-
     )
   }
-
 }
 
 export default About;

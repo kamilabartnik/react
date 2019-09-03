@@ -1,7 +1,5 @@
 import API from '../../utils/api';
 
-
-
 export const login = (email, pass) => {
   return (dispatch) => {
     API.login(email, pass, res => {
@@ -16,7 +14,6 @@ export const login = (email, pass) => {
       })
     })
   }
-
 }
 
 export const register = (email, pass) => {

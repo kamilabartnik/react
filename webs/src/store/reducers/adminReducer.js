@@ -1,6 +1,6 @@
 const defaultState = {
-  user: [],
-  post: []
+  users: [],
+  posts: []
 }
 
 const admin = (state = defaultState, action) => {
@@ -8,7 +8,12 @@ const admin = (state = defaultState, action) => {
     case 'GOT_USERS':
       return {
         ...state,
-        user: action.payload,
+        users: action.payload,
+      }
+    case 'GOT_POSTS':
+      return {
+        ...state,
+        posts: action.payload,
       }
     default:
       return state
