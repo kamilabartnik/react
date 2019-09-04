@@ -44,6 +44,12 @@ class AddPost extends Component {
     }
   }
 
+  componentDidMount(props, state){
+    if(this.props.match.params.view === 'edit' && this.props.match.paramas.id){
+      this.props.getSinglePost(this.props.match.params.id, this.props.auth.token);
+    }
+  }
+
   render(){
     const {classes} = this.props;
 
@@ -107,6 +113,9 @@ const mapStateToProps = states => ({
 const mapDispatchToProps = dispatch => ({
   addPost: (post, token) => {
     dispatch(AdminActions.addPost(post, token));
+  },
+  getSinglePost: (id, token) => {
+    dispatch(AdminActions.getSinglePost(id, token));
   }
 });
 
@@ -114,8 +123,8 @@ export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
 )(withFormik({
-  mapPropsToValues: () => ({
-    title: '',
+  mapPropsToValues: (props) => ({
+    title: props.admin.posts.title ||'',
     slug: '',
     createdAt: '',
     status: false,

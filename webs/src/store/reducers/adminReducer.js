@@ -1,6 +1,7 @@
 const defaultState = {
   users: [],
-  posts: []
+  posts: [],
+  post: {}
 }
 
 const admin = (state = defaultState, action) => {
@@ -20,6 +21,11 @@ const admin = (state = defaultState, action) => {
         ...state,
         posts: state.posts.concat(action.payload)
       }
+      case 'GOT_SINGLE_POST':
+        return {
+          ...state,
+          post: action.payload,
+        }
     default:
       return state
   }
