@@ -53,7 +53,6 @@ class App extends Component {
             path="/admin/post/:view/:id"
             exact={true}
             render={props => {
-              console.log("Props", props);
               return (
                 <div>
                   {

@@ -38,7 +38,7 @@ class TableView extends Component {
                     return (
                       <TableCell>
                         {col.name === 'id' ?
-                          <Link to={`/admin/posts/edit/${row[col.name]}`}
+                          <Link to={`/admin/post/edit/${row[col.name]}`}
                                     component={RouterLink}>
                                     {row[col.name]}</Link>
                           : row[col.name]

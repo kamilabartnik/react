@@ -33,6 +33,17 @@ export const addPost = (post, token) => {
   }
 }
 
+export const updatePost = (post, token) => {
+  return dispatch => {
+    API.updatePost(post, token, res => {
+      dispatch({
+        type: 'UPDATED_POST',
+        payload: res.data
+      })
+    })
+  }
+}
+
 export const getSinglePost = (id, token) => {
   return dispatch => {
     API.getSinglePost(id, token, res => {
