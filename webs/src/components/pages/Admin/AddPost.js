@@ -10,7 +10,9 @@ import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 import ImageIcon from '@material-ui/icons/Image';
 import {withRouter} from 'react-router-dom';
-import API from '../../../utils/api'
+import API from '../../../utils/api';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 /* global $ */
 const styles = theme => ({
@@ -19,6 +21,9 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'row wrap',
     width: '100%'
+  },
+  postImage: {
+    width: '100%',
   },
   Save: {
     marginBottom: theme.spacing(2),
@@ -67,6 +72,26 @@ class AddPost extends Component {
     }
   }
 
+  modules = {
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'],
+      [{'header': 1}, {'header': 2}],
+      [{'list': 'ordered'}, {'list': 'bullet'}],
+      [{'indent': '-1'}, {'indent': '+1'}],
+      [{'size': ['small', 'medium', 'large', 'huge']}],
+      [{'color': []}, {'background': []}],
+      ['image'],
+      ['clean']
+    ]
+  }
+
+  formats = [
+    'header',
+    'bold', 'italic', 'underline', 'strike', 'blockquote', 'script',
+    'list', 'bullet', 'indent',
+    'link', 'image', 'color', 'code-block'
+  ]
+
   render(){
     const {classes} = this.props;
 
@@ -87,11 +112,12 @@ class AddPost extends Component {
               label="Slug"
               margin="normal"
             />
-            <FormikTextField
-              name="content"
-              label="Content"
-              margin="normal"
-              fullWidth
+            <ReactQuill
+              value={this.props.values.content}
+              modules={this.modules}
+              formats={this.formats}
+              placeholder="Some cool stuff"
+              ocChange={val => this.props.setFieldValue('content', val)}
             />
           </Paper>
           <Paper className={classes.rightSide}>
@@ -118,7 +144,7 @@ class AddPost extends Component {
             </div>
             {this.props.admin.post.PostImage ?
               this.props.admin.post.PostImage.length > 0 ?
-                <img src={API.makeFileURL(this.props.admin.post.PostImage[0].url, this.props.auth.token)} className={classes.postImage} />
+                <img src={API.makeFileURL(this.props.admin.post.PostImage[0].url, this.props.auth.token)} className={classes.postImage} alt='' />
                 : null
               : null}
             <div>
@@ -175,14 +201,15 @@ export default withRouter(connect(
     content: Yup.string().required()
   }),
   handleSubmit: (values, {setSubmitting, props}) => {
+    console.log("Saving", props.addPost);
     if(props.match.params.view === 'edit'){
-      const post = {
-        ...values,
-        id: props.match.params.id
-      }
-      props.updatePost(post, props.auth.token);
-    } else {
-      props.addPost(values, props.auth.token);
+        const post = {
+            ...values,
+            id: props.match.params.id
+        }
+        props.updatePost(post, props.auth.token);
+    }else{
+        props.addPost(values, props.auth.token);
     }
-  }
+}
 })(withStyles(styles)(AddPost))));
