@@ -59,7 +59,7 @@ class AddPost extends Component {
     const data = new FormData();
     data.append('file', e.target.files[0], new Date().getTime().toString() + e.target.files[0].name);
     this.props.uploadImage(data, this.props.auth.token, this.props.admin.post.id, this.props.auth.user.userId)
-  }
+}
 
   componentDidMount(props, state) {
     if (this.props.match.params.view === 'edit' && this.props.match.params.id) {
@@ -117,23 +117,19 @@ class AddPost extends Component {
               </Button>
             </div>
             {this.props.admin.post.PostImage ?
-              <img src={API.makeFileURL(this.props.admin.post.PostImage[0].url, this.props.auth.token)} className="post-image" alt="" />
-              :null }
+              this.props.admin.post.PostImage.length > 0 ?
+                <img src={API.makeFileURL(this.props.admin.post.PostImage[0].url, this.props.auth.token)} className={classes.postImage} />
+                : null
+              : null}
             <div>
               <Button
                 variant="contained"
                 color="primary"
                 onClick={e => {
                   $('.MyFile').trigger('click');
-                }}>
-                <ImageIcon />
-                Upload post Image
-              </Button>
-              <input type="file" 
-                style={{display:'none'}} 
-                className="MyFile" 
-                onChange={this.uploadImage}
-              />
+                }}
+              ><ImageIcon /> Upload Post Image</Button>
+              <input type="file" style={{ display: 'none' }} className="MyFile" onChange={this.uploadImage} />
             </div>
           </Paper>
         </Form>
@@ -159,7 +155,7 @@ const mapDispatchToProps = dispatch => ({
   },
   uploadImage: (data, token, postId, userId) => {
     dispatch(AdminActions.uploadImage(data, token, postId, userId));
-  }
+}
 });
 
 export default withRouter(connect(

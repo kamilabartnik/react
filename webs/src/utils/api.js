@@ -37,17 +37,23 @@ const API = {
     });
   },
   getSinglePost: (id, token, success) => {
-    axios.get(`${host}/api/Posts/${id}?access_token=${token}`)
+    axios.get(`${host}/api/Posts/${id}?access_token=${token}`, {
+      params: {
+        filter: {
+          include: 'PostImage'
+        }
+      }
+    })
     .then(res => {
       success(res);
     });
   },
   uploadImage: (data, token, postId, userId, success) => {
-    axios.post(`${host}/api/PostImages/upload?access_token=${token}&post_id=${postId}&user_id=${userId}`, data)
-    .then(res => {
-      success(res);
-    });
-  }
+    axios.post(`${host}/api/PostImages/upload?post_id=${postId}&access_token=${token}&user_id=${userId}`, data)
+      .then(res => {
+        success(res);
+      })
+  },
 }
 
 export default API;
