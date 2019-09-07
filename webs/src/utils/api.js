@@ -3,6 +3,9 @@ import axios from 'axios';
 const host = 'http://localhost:8080';
 
 const API = {
+  makeFileURL: (url, token) => {
+    return host + url + "?access_token=" + token;
+  },
   login: (email, pass, success) => {
     axios.post(`${host}/api/users/login`, {email: email, password: pass})
       .then(res => {
@@ -35,6 +38,12 @@ const API = {
   },
   getSinglePost: (id, token, success) => {
     axios.get(`${host}/api/Posts/${id}?access_token=${token}`)
+    .then(res => {
+      success(res);
+    });
+  },
+  uploadImage: (data, token, postId, userId, success) => {
+    axios.post(`${host}/api/PostImages/upload?access_token=${token}&post_id=${postId}&user_id=${userId}`, data)
     .then(res => {
       success(res);
     });

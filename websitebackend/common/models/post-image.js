@@ -1,3 +1,6 @@
+/* eslint-disable camelcase */
+/*eslint-diable max-len */
+
 'use strict';
 
 const sharp = require('sharp');
@@ -24,7 +27,7 @@ module.exports = function (PostImage) {
 
           sharp('./server/storage/' + ctx.req.params.container + '/' + fileInfo.name)
             .resize(100)
-            .toFile('./server/storage/' + ctx.req.params.container + '/100-' + fileInfo,
+            .toFile('./server/storage/' + ctx.req.params.container + '/100-' + fileInfo.name,
               (err) => {
                 if (!err) {
                   PostImage.create({

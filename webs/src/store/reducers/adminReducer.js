@@ -5,7 +5,7 @@ const defaultState = {
 }
 
 const admin = (state = defaultState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case 'GOT_USERS':
       return {
         ...state,
@@ -22,27 +22,35 @@ const admin = (state = defaultState, action) => {
         posts: state.posts.concat(action.payload),
         post: action.payload,
       }
-      case 'GOT_SINGLE_POST':
-        return {
-          ...state,
-          post: action.payload,
+    case 'UPLOADED_IMAGE':
+      return {
+        ...state,
+        post: {
+          ...state.post,
+          PostImage: [action.payload]
         }
-      case 'UPDATED_POST':
-        return {
-          ...state,
-          post: action.payload,
-          posts: state.posts.map(p=> {
-            if(p.id === action.payload.id){
-              //this is the existing post in redux
-              return {
-                ...p,
-                ...action.payload
-              }
-            } else {
-              return p;
+      }
+    case 'GOT_SINGLE_POST':
+      return {
+        ...state,
+        post: action.payload,
+      }
+    case 'UPDATED_POST':
+      return {
+        ...state,
+        post: action.payload,
+        posts: state.posts.map(p => {
+          if (p.id === action.payload.id) {
+            //this is the existing post in redux
+            return {
+              ...p,
+              ...action.payload
             }
-          })
-        }
+          } else {
+            return p;
+          }
+        })
+      }
     default:
       return state
   }
