@@ -13,6 +13,8 @@ import Home from './components/pages/Home';
 import About from './components/pages/About';
 import Login from './components/pages/Login';
 import Contact from './components/pages/Contact';
+import Blog from './components/pages/Blog';
+import Single from './components/pages/Single';
 
 // admin pages
 import Dashboard from './components/pages/Admin/Dashboard';
@@ -144,6 +146,22 @@ class App extends Component {
             render={props => (
               <PageWrapper>
                 <Home {...props} />
+              </PageWrapper>
+            )}
+          />
+          <Route
+            path="/blog/:slug"
+            render={props => (
+              <PageWrapper>
+                <Single {...props} />
+              </PageWrapper>
+            )}
+          />
+          <Route
+            path="/blog"
+            render={props => (
+              <PageWrapper>
+                <Blog {...props} />
               </PageWrapper>
             )}
           />
