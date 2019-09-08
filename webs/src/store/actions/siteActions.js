@@ -7,7 +7,7 @@ export const getPosts = (skip) => {
         type: 'GOT_SITE_POSTS',
         payload: res.data,
         skip: skip
-      })
+      }) 
     })
   }
 }

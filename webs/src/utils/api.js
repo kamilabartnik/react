@@ -29,7 +29,14 @@ const API = {
       params: {
         filter: {
           skip: skip,
-          limit: 10
+          limit: 5,
+          include: 'PostImage',
+          fields: {
+            id: true,
+            title: true,
+            slug: true,
+            content: false
+          }
         }
       }
     })
