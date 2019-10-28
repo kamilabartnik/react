@@ -6,8 +6,6 @@
     "node": ">=6"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "lint": "eslint .",
     "start": "node .",
     "posttest": "npm run lint && npm audit"
